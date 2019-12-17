@@ -2,6 +2,9 @@
 
 FROM strapdata/elassandra:6.8.4.0
 
+WORKDIR /app/ela
+ADD . /app/ela
+
 
 # 7000: intra-node communication
 # 7001: TLS intra-node communication

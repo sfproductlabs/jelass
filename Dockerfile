@@ -5,7 +5,8 @@ FROM strapdata/elassandra:6.8.4.0
 WORKDIR /app/ela
 ADD . /app/ela
 
-# COPY cassandra.yaml /etc/cassandra/cassandra.yaml
+COPY cassandra.yaml /etc/cassandra/cassandra.yaml
+COPY .cassandra/cqlshrc /root/.cassandra/cqlshrc
 
 # 7000: intra-node communication
 # 7001: TLS intra-node communication

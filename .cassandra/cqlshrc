@@ -1,0 +1,15 @@
+[connection]
+hostname = 127.0.0.1
+port = 9042
+factory = cqlshlib.ssl.ssl_transport_factory
+
+[ssl]
+certfile = /app/ela/.setup/keys/staging/rootCa.crt
+validate = true
+userkey = /app/ela/.setup/keys/staging/cassandra-client.key
+usercert = /app/ela/.setup/keys/staging/cassandra-client.crt
+
+[certfiles]
+# Optional section, overrides the default certfile in the [ssl] section for 2 way SSL
+#172.31.10.22 = ~/keys/node0.cer.pem
+#172.31.8.141 = ~/keys/node1.cer.pem

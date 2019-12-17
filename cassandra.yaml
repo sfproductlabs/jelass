@@ -891,9 +891,9 @@ request_scheduler: org.apache.cassandra.scheduler.NoScheduler
 #
 server_encryption_options:
     internode_encryption: all
-    keystore: /home/a/.keys/cassandra-server.jks
+    keystore: /app/ela/.setup/keys/staging/cassandra-server.jks
     keystore_password: YInKGOL6P7kzJCx
-    truststore: /home/a/.keys/cassandra-truststore.jks
+    truststore: /app/ela/.setup/keys/staging/cassandra-truststore.jks
     truststore_password: YInKGOL6P7kzJCx
     # More advanced defaults below:
     # protocol: TLS
@@ -907,9 +907,9 @@ client_encryption_options:
     enabled: true
     # If enabled and optional is set to true encrypted and unencrypted connections are handled.
     optional: false
-    keystore: /home/a/.keys/cassandra-server.jks
+    keystore: /app/ela/.setup/keys/staging/cassandra-server.jks
     keystore_password: YInKGOL6P7kzJCx
-    truststore: /home/a/.keys/cassandra-truststore.jks
+    truststore: /app/ela/.setup/keys/staging/cassandra-truststore.jks
     truststore_password: YInKGOL6P7kzJCx
     # require_client_auth: true
     # Set trustore and truststore_password if require_client_auth is true

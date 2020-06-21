@@ -29,17 +29,25 @@ RUN bash -c 'echo "net.core.somaxconn = 1048575" >> /etc/sysctl.conf' \
 
 ####################################################################################
 
+
+
+RUN apt update && apt upgrade -y && \
+    apt install nginx -y && \
+    cp nginx.conf /etc/nginx/ && \
+    service nginx start 
+
 # 7000: intra-node communication
 # 7001: TLS intra-node communication
 # 7199: JMX
 # 9042: CQL
 # 9142 : encrypted CQL
 # 9160: thrift service
-# 9200: elassandra HTTP
-# 9300: elasticsearch transport
+# 9200: elassandra HTTP # Remove for security
+# 9300: elasticsearch internal transport
+# 9343: elasticsearch internal transport (encrypted)
 # 443: HTTPS 9200 (NGINX Proxy)
 # 80: HTTP->HTTPS REDIRECT
-EXPOSE 7000 7001 7199 9042 9142 9160 9200 9300 443 80
+EXPOSE 7000 7001 7199 9042 9142 9160 9200 9300 9343 443 80
 CMD ["cassandra", "-f"]
 
 

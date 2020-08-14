@@ -32,9 +32,10 @@ RUN bash -c 'echo "net.core.somaxconn = 1048575" >> /etc/sysctl.conf' \
 
 
 RUN apt update && apt upgrade -y && \
-    apt install nginx -y && \
+    apt install nginx libnginx-mod-stream -y && \
     cp nginx.conf /etc/nginx/ && \
-    service nginx start 
+    service nginx start && \
+    /usr/sbin/update-rc.d -f nginx defaults
 
 # 7000: intra-node communication
 # 7001: TLS intra-node communication
@@ -48,6 +49,7 @@ RUN apt update && apt upgrade -y && \
 # 443: HTTPS 9200 (NGINX Proxy)
 # 80: HTTP->HTTPS REDIRECT
 EXPOSE 7000 7001 7199 9042 9142 9160 9200 9300 9343 443 80
+#CMD service nginx start ; runuser -m -l cassandra -c "cassandra -f"
 CMD ["cassandra", "-f"]
 
 

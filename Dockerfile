@@ -39,8 +39,7 @@ RUN apt update && apt upgrade -y && \
 
 ENV JANUS 0.5.2
 ENV JV janusgraph-full-${JANUS}
-RUN wget https://github.com/JanusGraph/janusgraph/releases/download/v${JANUS}/${JV}.zip
-RUN unzip ${JV}.zip 
+RUN wget https://github.com/JanusGraph/janusgraph/releases/download/v${JANUS}/${JV}.zip && unzip ${JV}.zip && rm ${JV}.zip
 RUN bash -c 'echo "storage.cql.ssl.enabled=true" >> $JV/conf/gremlin-server/janusgraph-cql-es-server.properties' \
  && bash -c 'echo "storage.cql.ssl.client-authentication-enabled=true" >> $JV/conf/gremlin-server/janusgraph-cql-es-server.properties' \
  && bash -c 'echo "storage.cql.ssl.keystore.keypassword=YInKGOL6P7kzJCx" >> $JV/conf/gremlin-server/janusgraph-cql-es-server.properties' \

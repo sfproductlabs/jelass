@@ -49,6 +49,8 @@ RUN bash -c 'echo "storage.cql.ssl.enabled=true" >> $JV/conf/gremlin-server/janu
  && bash -c 'echo "storage.cql.ssl.truststore.location=/app/ela/.setup/keys/cassandra-truststore.jks" >> $JV/conf/gremlin-server/janusgraph-cql-es-server.properties' \
  && bash -c 'echo "storage.cql.ssl.truststore.password=YInKGOL6P7kzJCx" >> $JV/conf/gremlin-server/janusgraph-cql-es-server.properties' 
 
+RUN bash -c "sed -i -e '/^assistive_technologies=/s/^/#/' /etc/java-*-openjdk/accessibility.properties"
+
 # 7000: intra-node communication
 # 7001: TLS intra-node communication
 # 7199: JMX
@@ -60,8 +62,9 @@ RUN bash -c 'echo "storage.cql.ssl.enabled=true" >> $JV/conf/gremlin-server/janu
 # 9343: elasticsearch internal transport (encrypted)
 # 443: HTTPS 9200 (NGINX Proxy)
 # 80: HTTP->HTTPS REDIRECT
-EXPOSE 7000 7001 7199 9042 9142 9160 9200 9300 9343 443 80
+# 8182: Gremlin/Janus Service
+EXPOSE 7000 7001 7199 9042 9142 9160 9200 9300 9343 443 80 8182
 #CMD service nginx start ; runuser -m -l cassandra -c "cassandra -f"
 #CMD ["cassandra", "-f"]
-CMD bash -c "((sleep 60s && $JV/bin/gremlin-server.sh $JV/conf/gremlin-server/gremlin-server-cql-es.yaml &) && runuser -m cassandra -c 'cassandra -f')"
+CMD bash -c "((sleep 60s && (cd $JV; ./bin/gremlin-server.sh ./conf/gremlin-server/gremlin-server-cql-es.yaml; cd ..) &) && runuser -m cassandra -c 'cassandra -f')"
 

@@ -1,7 +1,9 @@
-# Jelass (Janus + Elastic Search + Cassandra) Docker with SSL by default
+# Jelass, a Linearly Scalable, Searchable, NoSQL and Graph Database combined in one
 
-Work in progress
+## _J_anus + _Elass_andra (Elastic Search + Cassandra) 
 
-## SFPL's Internal/Development Janus + Elassandra Docker Image for Production Ready Deployment 
-- [x] Show how to setup nginx for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
-- [x] Show how to setup cassandra to use keystores by default
+## Running & Ready for Production
+- [x] Docker with SSL by default
+- [x] Work in progress
+- [x] Nginx SSL for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
+- [x] Cassandra client and server keystores by default

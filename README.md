@@ -1,6 +1,6 @@
 # Jelass, a Linearly Scalable, Searchable, NoSQL and Graph Database combined in one
 
-## _J_anus + _Elass_andra (Elastic Search + Cassandra) 
+## Janus + Elassandra (Elastic Search + Cassandra) 
 
 ## Running & Ready for Production
 - [x] Docker with SSL by default

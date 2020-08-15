@@ -1,5 +1,5 @@
 # Jelass, a Linearly Scalable, Searchable, NoSQL and Graph Database
-## Janus + Elassandra (Elastic Search + Cassandra) 
+## Jelass = Janus + Elassandra (Elastic Search + Cassandra) 
 
 Elassandra stores Elastic data on Cassandra. So there's no double up on this system. Cassandra is the boss. Elastic runs on top of it and allows it to be useful (searchable, querying etc.). Janus comes to town and adds all the graph functionality LinkedIn could ever need. All under the one roof.
 

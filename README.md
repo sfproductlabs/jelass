@@ -4,6 +4,8 @@
 
 Elassandra stores Elastic data on Cassandra. So there's no double up on this system. Cassandra is the boss. Elastic runs on top of it and allows it to be useful (searchable, querying etc.). Janus comes to town and adds all the graph functionality LinkedIn could ever need. All under the one roof.
 
+How is this different from straight Janus? Elastic data isn't stored in Cassandra. This has all 3 together, bullet-proof. 
+
 ## Download Docker Image
 
 https://hub.docker.com/repository/docker/sfproductlabs/jelass

@@ -10,5 +10,5 @@ Elassandra stores Elastic data on Cassandra. So there's no double up on this sys
 - [x] Cassandra client and server keystores by default
 
 ## Connecting
-- ```cqlsh --ssl```
+- `cqlsh --ssl`
 - etc.

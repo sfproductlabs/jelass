@@ -6,6 +6,9 @@ Elassandra stores Elastic data on Cassandra. So there's no double up on this sys
 
 ## Running & Ready for Production
 - [x] Docker with SSL by default
-- [x] Work in progress
 - [x] Nginx SSL for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
 - [x] Cassandra client and server keystores by default
+
+## Connecting
+- ```cqlsh --ssl```
+- etc.

@@ -14,7 +14,7 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 - [x] Docker with SSL by default
 - [x] Nginx SSL for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
 - [x] Cassandra client and server keystores by default
-- [ ] TODO: add nginx streaming SSL for tinkerpop on 8121
+- [ ] TODO: add nginx streaming SSL for tinkerpop on 8182
 
 ## Connecting
 - `cqlsh --ssl`

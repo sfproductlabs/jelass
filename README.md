@@ -17,5 +17,5 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
 ## Connecting
 - `cqlsh --ssl`
-- `:remote connect tinkerpop.server conf/remote.yaml`
+- `./bin/gremlin.sh` then `:remote connect tinkerpop.server conf/remote.yaml`
 - etc.

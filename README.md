@@ -17,5 +17,16 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
 ## Connecting
 - `cqlsh --ssl`
-- `./bin/gremlin.sh` then `:remote connect tinkerpop.server conf/remote.yaml`
+- Remotely: `./bin/gremlin.sh` then `:remote connect tinkerpop.server conf/remote.yaml`
+- Or locally: `./bin/gremlin.sh` then `graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')` 
 - etc.
+
+## Starting out
+Then try the basic demo:
+```gremlin
+GraphOfTheGodsFactory.load(graph)
+g = graph.traversal()
+saturn = g.V().has('name', 'saturn').next()
+g.V(saturn).valueMap()
+g.V(saturn).in('father').in('father').values('name')
+```

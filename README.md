@@ -30,3 +30,7 @@ saturn = g.V().has('name', 'saturn').next()
 g.V(saturn).valueMap()
 g.V(saturn).in('father').in('father').values('name')
 ```
+then access the data remotely:
+```
+:> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
+```

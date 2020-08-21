@@ -24,7 +24,17 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 ## Starting out
 Then try the basic demo:
 
-On the console first run `docker ps` then `docker exec -it [number] bash` then `/app/ela/janusgraph-full-0.5.2# ./bin/gremlin.sh`.
+On the console hosting docker run:
+```bash
+docker ps
+#then 
+docker exec -it [container_number] bash
+```
+Then inside the docker container:
+```bash
+cd /app/ela/janusgraph-full-0.5.2
+./bin/gremlin.sh
+```
 
 Then inside gremlin:
 
@@ -36,7 +46,8 @@ saturn = g.V().has('name', 'saturn').next()
 g.V(saturn).valueMap()
 g.V(saturn).in('father').in('father').values('name')
 ```
-then access the data remotely:
+or access the data remotely in a remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 ```
+:remote connect tinkerpop.server conf/remote.yaml
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
 ```

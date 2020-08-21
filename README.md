@@ -80,10 +80,10 @@ https://cassandra.apache.org/third-party/
 ## Using Python
 
 https://docs.janusgraph.org/connecting/python/
-- [ ] Connecting to spark/superset
+- [ ] TODO: Connecting to spark/superset
 
 ## TODO
 
-- [ ] Visualization in Elassandra. Superset. Spark.
+- [ ] TODO: Visualization in Elassandra. Superset. Spark.
 
 

@@ -27,7 +27,7 @@ Then try the basic demo:
 On the console hosting docker run:
 ```bash
 docker ps
-#then 
+#then replace [container_number] with your docker container hash
 docker exec -it [container_number] bash
 ```
 Then inside the docker container:
@@ -46,7 +46,7 @@ saturn = g.V().has('name', 'saturn').next()
 g.V(saturn).valueMap()
 g.V(saturn).in('father').in('father').values('name')
 ```
-or access the data remotely in a remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
+or access the data **remotely** in a remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 ```
 :remote connect tinkerpop.server conf/remote.yaml
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()

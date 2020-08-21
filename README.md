@@ -58,4 +58,4 @@ https://docs.janusgraph.org/connecting/python/
 
 ## Using Elassandra (Cassandra + Elastic Search)
 
-elassandra.readthedocs.io/
+https://elassandra.readthedocs.io/

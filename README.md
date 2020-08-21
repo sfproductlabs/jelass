@@ -39,7 +39,7 @@ cd /app/ela/janusgraph-full-0.5.2
 Then inside `gremlin>`:
 
 ```gremlin
-
+graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
 GraphOfTheGodsFactory.load(graph)
 g = graph.traversal()
 saturn = g.V().has('name', 'saturn').next()

@@ -36,7 +36,7 @@ cd /app/ela/janusgraph-full-0.5.2
 ./bin/gremlin.sh
 ```
 
-Then inside `gremlin>`:
+Then inside the `gremlin>` console:
 
 ```gremlin
 graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
@@ -46,8 +46,16 @@ saturn = g.V().has('name', 'saturn').next()
 g.V(saturn).valueMap()
 g.V(saturn).in('father').in('father').values('name')
 ```
-or access the data **remotely** in a remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
+or access the data **remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 ```
 :remote connect tinkerpop.server conf/remote.yaml
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
 ```
+
+## Using Python
+
+https://docs.janusgraph.org/connecting/python/
+
+## Using Elassandra (Cassandra + Elastic Search)
+
+elassandra.readthedocs.io/

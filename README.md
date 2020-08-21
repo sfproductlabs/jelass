@@ -23,7 +23,13 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
 ## Starting out
 Then try the basic demo:
+
+On the console first run `docker ps` then `docker exec -it [number] bash` then `/app/ela/janusgraph-full-0.5.2# ./bin/gremlin.sh`.
+
+Then inside gremlin:
+
 ```gremlin
+
 GraphOfTheGodsFactory.load(graph)
 g = graph.traversal()
 saturn = g.V().has('name', 'saturn').next()

@@ -36,7 +36,7 @@ cd /app/ela/janusgraph-full-0.5.2
 ./bin/gremlin.sh
 ```
 
-Then inside gremlin:
+Then inside `gremlin>`:
 
 ```gremlin
 

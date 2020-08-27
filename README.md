@@ -20,3 +20,25 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 - `cqlsh --ssl`
 - `:remote connect tinkerpop.server conf/remote.yaml`
 - etc.
+
+## Diagnostics
+
+```bash
+curl -XGET http://$CASSANDRA_HOST:9200/_cluster/state?pretty
+nodetool repair -full
+nodetool cleanup
+nodetool flush
+#nodetool rebuild_index sfpla events_recent events_recent_idx
+nodetool gossipinfo
+nodetool tpstats
+nodetool describecluster
+nodetool statusthrift
+nodetool statusgossip
+nodetool ring
+nodetool status
+nodetool status elastic_admin
+#less /var/log/cassandra/system.log
+# ...
+#cqlsh --ssl
+#cqlsh>select * from elastic_admin.Metadata_log;
+```

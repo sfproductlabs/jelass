@@ -126,6 +126,11 @@ Then connect to: `ws://localhost:8182/gremlin`
 
 The creator created a great little [CRUD intro](https://medium.com/invanalabs/crud-cheatsheet-to-apache-tinkerpop-gremlin-393540cd46ae).
 
+After you have created your first few nodes and edges try this in the query editor:
+```
+nodes=g.V().toList();edges=g.E().toList();[nodes,edges]
+```
+
 ## Cassandra Tools
 
 https://cassandra.apache.org/third-party/

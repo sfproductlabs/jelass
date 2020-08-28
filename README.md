@@ -124,6 +124,8 @@ Open the Url: http://localhost:8889
 
 Then connect to: `ws://localhost:8182/gremlin` 
 
+The creator created a great little [CRUD intro](https://medium.com/invanalabs/crud-cheatsheet-to-apache-tinkerpop-gremlin-393540cd46ae).
+
 ## Cassandra Tools
 
 https://cassandra.apache.org/third-party/

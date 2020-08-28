@@ -50,6 +50,9 @@ or access the data **remotely** in another remote gremlin console `./bin/gremlin
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
 ```
 
+### Dropping a graph
+
+```JanusGraphFactory.drop(graph);```
 
 ## Using Elassandra (Cassandra + Elastic Search)
 

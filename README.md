@@ -57,7 +57,42 @@ or access the data **remotely** in another remote gremlin console `./bin/gremlin
 :remote connect tinkerpop.server conf/remote.yaml
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
 ```
+or better still:
+```
+graph = EmptyGraph.instance()
+g = graph.traversal().withRemote('conf/remote-graph.properties')
+// TinkerPop Predicates
+g.V().has('age',within(5000))
+g.V().has('age',without(5000))
+g.V().has('age',within(5000,45))
+g.V().has('age',inside(45,5000)).valueMap(true)
+g.V().and(has('age',between(45,5000)),has('name',within('pluto'))).valueMap(true)
+g.V().or(has('age',between(45,5000)),has('name',within('pluto','neptune'))).valueMap(true)
 
+// Janus Graph Geo Predicates
+g.E().has('place', geoIntersect(Geoshape.circle(37.97, 23.72, 50)))
+g.E().has('place', geoWithin(Geoshape.circle(37.97, 23.72, 50)))
+g.E().has('place', geoDisjoint(Geoshape.circle(37.97, 23.72, 50)))
+
+// master branch only
+g.addV().property('place', Geoshape.circle(37.97, 23.72, 50))
+g.V().has('place', geoContains(Geoshape.point(37.97, 23.72)))
+
+// Janus Graph Text Predicates
+g.V().has('name',textContains('neptune')).valueMap(true)
+g.V().has('name',textContainsPrefix('nep')).valueMap(true)
+g.V().has('name',textContainsRegex('nep.*')).valueMap(true)
+g.V().has('name',textPrefix('n')).valueMap(true)
+g.V().has('name',textRegex('.*n.*')).valueMap(true)
+
+// master branch only
+g.V().has('name',textContainsFuzzy('neptun')).valueMap(true)
+g.V().has('name',textFuzzy('nepitne')).valueMap(true)
+```
+
+### Dropping a graph
+
+```JanusGraphFactory.drop(graph);```
 
 ## Using Elassandra (Cassandra + Elastic Search)
 

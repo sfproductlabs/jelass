@@ -51,16 +51,21 @@ mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asPara
 mgmt.commit()
 g.addV('person').property('alias','bob')
 g.V().has('alias', textContains('bob')).hasNext()
+graph.tx().commit()
 ```
 or access the data **remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 ```
 :remote connect tinkerpop.server conf/remote.yaml
+:> g.V().has('alias', 'bob').hasNext()
 :> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
 ```
 or better still:
 ```
+cluster = Cluster.open('conf/remote-objects.yaml')
 graph = EmptyGraph.instance()
-g = graph.traversal().withRemote('conf/remote-graph.properties')
+g = graph.traversal().withRemote(DriverRemoteConnection.using(cluster, "g"))
+// graph = EmptyGraph.instance()
+// g = graph.traversal().withRemote('conf/remote-graph.properties')
 // TinkerPop Predicates
 g.V().has('age',within(5000))
 g.V().has('age',without(5000))
@@ -93,6 +98,13 @@ g.V().has('name',textFuzzy('nepitne')).valueMap(true)
 ### Dropping a graph
 
 ```JanusGraphFactory.drop(graph);```
+
+### Checking Schema
+
+```
+mgmt = graph.openManagement()
+mgmt.printSchema()
+```
 
 ## Using Elassandra (Cassandra + Elastic Search)
 

@@ -115,6 +115,12 @@ https://elassandra.readthedocs.io/
 
 * [Graph Explorer](https://github.com/invanalabs/graph-explorer)
 
+docker run -p 8889:8888 -d --name graph-explorer invanalabs/graph-explorer
+
+Open the Url: http://localhost:8889
+
+Then connect to: `ws://localhost:8182/gremlin` 
+
 ## Cassandra Tools
 
 https://cassandra.apache.org/third-party/

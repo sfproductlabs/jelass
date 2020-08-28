@@ -113,18 +113,7 @@ https://elassandra.readthedocs.io/
 
 ## Visualization of Janus
 
-To visualize graphs stored in JanusGraph, you can use any of the following
-tools:
-
-* [Arcade Analytics](https://arcadeanalytics.com/usermanual/#arcade-analytics)
-* [Cytoscape](http://www.cytoscape.org/)
-* [Gephi](https://tinkerpop.apache.org/docs/current/reference/#gephi-plugin)
-  plugin for Apache TinkerPop
-* [Graphexp](https://github.com/bricaud/graphexp)
 * [Graph Explorer](https://github.com/invanalabs/graph-explorer)
-* [KeyLines by Cambridge Intelligence](https://cambridge-intelligence.com/visualizing-janusgraph-new-titandb-fork/)
-* [Linkurious](https://doc.linkurio.us/ogma/latest/tutorials/janusgraph/)
-* [Tom Sawyer Perspectives](https://www.tomsawyer.com/perspectives/)
 
 ## Cassandra Tools
 

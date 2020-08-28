@@ -9,11 +9,9 @@ How is this different from straight Janus? Janus' elastic data isn't stored in C
 
 https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
-## Running & Ready for Production
-- [x] Docker with SSL by default
-- [x] Nginx SSL for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
-- [x] Cassandra client and server keystores by default
-- [ ] TODO: add nginx streaming SSL for tinkerpop on 8182
+### Running in docker-compose 
+
+See example https://github.com/sfproductlabs/tracker/blob/master/docker-compose.yml
 
 ## Connecting
 - `cqlsh --ssl`
@@ -109,4 +107,12 @@ https://docs.janusgraph.org/connecting/python/
 
 - [ ] TODO: Visualization in Elassandra. Superset. Spark.
 
+## Running & Ready for Production
+- [x] Docker with SSL by default
+- [x] Nginx SSL for elastic search (Available on port 443 & port 9343, using nginx reverse proxy)
+- [x] Cassandra client and server keystores by default
+- [ ] TODO: add nginx streaming SSL for tinkerpop on 8182
+
+### Make sure to update the replication factor of  "elastic_admin"
+Ex. ```alter keyspace elastic_admin WITH replication = {'class': 'NetworkTopologyStrategy', 'DC1' : 2};```
 

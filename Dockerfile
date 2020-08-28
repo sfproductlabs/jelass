@@ -1,6 +1,6 @@
 
 
-FROM strapdata/elassandra:6.8.4.0
+FROM strapdata/elassandra:6.8.4.10
 
 WORKDIR /app/ela
 ADD . /app/ela

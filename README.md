@@ -43,6 +43,14 @@ g = graph.traversal()
 saturn = g.V().has('name', 'saturn').next()
 g.V(saturn).valueMap()
 g.V(saturn).in('father').in('father').values('name')
+
+//Add a fulltext index on a new property alias
+mgmt = graph.openManagement()
+summary = mgmt.makePropertyKey('alias').dataType(String.class).make()
+mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asParameter()).buildMixedIndex("search")
+mgmt.commit()
+g.addV('person').property('alias','bob')
+g.V().has('alias', textContains('bob')).hasNext()
 ```
 or access the data **remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 ```

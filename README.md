@@ -39,9 +39,7 @@ cd /app/ela/janusgraph-full-0.5.2
 ./bin/gremlin.sh
 ```
 
-Then inside the `gremlin>` console:
-
-Access the data **also works remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
+Then inside the `gremlin>` console (**also works remotely**) you may need to change the ip:
 
 ```
 cluster = Cluster.open('conf/remote-objects.yaml')

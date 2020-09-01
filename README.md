@@ -16,6 +16,8 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
 See example https://github.com/sfproductlabs/tracker/blob/master/docker-compose.yml
 
+Ensure you have enough memory.
+
 ## Connecting
 - `cqlsh --ssl`
 - Remotely: `./bin/gremlin.sh` then `:remote connect tinkerpop.server conf/remote.yaml`

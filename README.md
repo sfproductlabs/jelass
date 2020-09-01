@@ -39,30 +39,8 @@ cd /app/ela/janusgraph-full-0.5.2
 
 Then inside the `gremlin>` console:
 
-```gremlin
-graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
-GraphOfTheGodsFactory.load(graph)
-g = graph.traversal()
-saturn = g.V().has('name', 'saturn').next()
-g.V(saturn).valueMap()
-g.V(saturn).in('father').in('father').values('name')
+Access the data **also works remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
 
-//Add a fulltext index on a new property alias
-mgmt = graph.openManagement()
-summary = mgmt.makePropertyKey('alias').dataType(String.class).make()
-mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asParameter()).buildMixedIndex("search")
-mgmt.commit()
-g.addV('person').property('alias','bob')
-g.V().has('alias', textContains('bob')).hasNext()
-graph.tx().commit()
-```
-or access the data **remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
-```
-:remote connect tinkerpop.server conf/remote.yaml
-:> g.V().has('alias', 'bob').hasNext()
-:> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
-```
-or better still:
 ```
 cluster = Cluster.open('conf/remote-objects.yaml')
 graph = EmptyGraph.instance()
@@ -97,7 +75,25 @@ g.V().has('name',textRegex('.*n.*')).valueMap(true)
 g.V().has('name',textContainsFuzzy('neptun')).valueMap(true)
 g.V().has('name',textFuzzy('nepitne')).valueMap(true)
 ```
+You can also run the examples locally:
 
+```gremlin
+graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
+GraphOfTheGodsFactory.load(graph)
+g = graph.traversal()
+saturn = g.V().has('name', 'saturn').next()
+g.V(saturn).valueMap()
+g.V(saturn).in('father').in('father').values('name')
+
+//Add a fulltext index on a new property alias
+mgmt = graph.openManagement()
+summary = mgmt.makePropertyKey('alias').dataType(String.class).make()
+mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asParameter()).buildMixedIndex("search")
+mgmt.commit()
+g.addV('person').property('alias','bob')
+g.V().has('alias', textContains('bob')).hasNext()
+graph.tx().commit()
+```
 ### Dropping a graph
 
 ```JanusGraphFactory.drop(graph);```

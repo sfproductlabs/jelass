@@ -25,6 +25,9 @@ Ensure you have enough memory.
 - etc.
 
 ## Starting out
+
+### Starting with JanusGraph
+
 Then try the basic demo:
 
 On the console hosting docker run:

@@ -1,0 +1,23 @@
+#Place it in /etc/systemd/system/jelass.service
+#update host below
+#then... systemctl enable/start/stop jelass.service
+
+[Unit]
+Description=Jelass DB
+After=network.target
+After=systemd-user-sessions.service
+After=network-online.target
+
+[Service]
+#User=jelass
+Type=forking
+WorkingDirectory=/opt/janus
+ExecStart=bash -c "(/opt/janus/bin/gremlin-server.sh /opt/janus/conf/gremlin-server/gremlin-server-cql-es.yaml &)"
+TimeoutSec=60
+Restart=on-failure
+RestartSec=60
+StartLimitInterval=350
+StartLimitBurst=10
+
+[Install]
+WantedBy=multi-user.target

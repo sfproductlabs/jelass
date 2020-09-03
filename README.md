@@ -110,6 +110,9 @@ mgmt.printSchema()
 
 https://elassandra.readthedocs.io/
 
+### Post-install
+
+On a production environment, we recommand to to modify some system settings such as disabling swap. This guide shows you how to do it. On linux, you should install jemalloc.
 
 ## Visualization of Janus
 
@@ -146,6 +149,7 @@ nodetool statusgossip
 nodetool ring
 nodetool status
 nodetool status elastic_admin
+nodetool cfstats | grep read | grep latency
 #less /var/log/cassandra/system.log
 # ...
 #cqlsh --ssl

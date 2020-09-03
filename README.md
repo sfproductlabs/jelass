@@ -1,4 +1,7 @@
 # Jelass (jĕl′əs), a Linearly Scalable, Searchable, NoSQL and Graph Database
+
+With a database like this, all your friends will be jealous.
+
 ## Jelass = JanusGraph + Elassandra (Elastic Search + Cassandra) 
 
 Elassandra stores Elastic data on Cassandra. So there's no double up on this system. Cassandra is the boss. Elastic runs on top of it and allows it to be useful (searchable, querying etc.). Janus comes to town and adds all the graph functionality LinkedIn could ever need. All under the one roof.
@@ -13,6 +16,8 @@ https://hub.docker.com/repository/docker/sfproductlabs/jelass
 
 See example https://github.com/sfproductlabs/tracker/blob/master/docker-compose.yml
 
+Ensure you have enough memory.
+
 ## Connecting
 - `cqlsh --ssl`
 - Remotely: `./bin/gremlin.sh` then `:remote connect tinkerpop.server conf/remote.yaml`
@@ -20,6 +25,9 @@ See example https://github.com/sfproductlabs/tracker/blob/master/docker-compose.
 - etc.
 
 ## Starting out
+
+### Starting with JanusGraph
+
 Then try the basic demo:
 
 On the console hosting docker run:
@@ -34,32 +42,8 @@ cd /app/ela/janusgraph-full-0.5.2
 ./bin/gremlin.sh
 ```
 
-Then inside the `gremlin>` console:
+Then inside the `gremlin>` console (**also works remotely**) you may need to change the ip:
 
-```gremlin
-graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
-GraphOfTheGodsFactory.load(graph)
-g = graph.traversal()
-saturn = g.V().has('name', 'saturn').next()
-g.V(saturn).valueMap()
-g.V(saturn).in('father').in('father').values('name')
-
-//Add a fulltext index on a new property alias
-mgmt = graph.openManagement()
-summary = mgmt.makePropertyKey('alias').dataType(String.class).make()
-mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asParameter()).buildMixedIndex("search")
-mgmt.commit()
-g.addV('person').property('alias','bob')
-g.V().has('alias', textContains('bob')).hasNext()
-graph.tx().commit()
-```
-or access the data **remotely** in another remote gremlin console `./bin/gremlin.sh` (you may need to change the ip):
-```
-:remote connect tinkerpop.server conf/remote.yaml
-:> g.V().has('alias', 'bob').hasNext()
-:> saturn = g.V(g.V().has('name', 'saturn').next()).valueMap()
-```
-or better still:
 ```
 cluster = Cluster.open('conf/remote-objects.yaml')
 graph = EmptyGraph.instance()
@@ -94,7 +78,25 @@ g.V().has('name',textRegex('.*n.*')).valueMap(true)
 g.V().has('name',textContainsFuzzy('neptun')).valueMap(true)
 g.V().has('name',textFuzzy('nepitne')).valueMap(true)
 ```
+You can also run the examples locally:
 
+```gremlin
+graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
+GraphOfTheGodsFactory.load(graph)
+g = graph.traversal()
+saturn = g.V().has('name', 'saturn').next()
+g.V(saturn).valueMap()
+g.V(saturn).in('father').in('father').values('name')
+
+//Add a fulltext index on a new property alias
+mgmt = graph.openManagement()
+summary = mgmt.makePropertyKey('alias').dataType(String.class).make()
+mgmt.buildIndex('alias', Vertex.class).addKey(summary, Mapping.TEXTSTRING.asParameter()).buildMixedIndex("search")
+mgmt.commit()
+g.addV('person').property('alias','bob')
+g.V().has('alias', textContains('bob')).hasNext()
+graph.tx().commit()
+```
 ### Dropping a graph
 
 ```JanusGraphFactory.drop(graph);```
@@ -116,18 +118,20 @@ On a production environment, we recommand to to modify some system settings such
 
 ## Visualization of Janus
 
-To visualize graphs stored in JanusGraph, you can use any of the following
-tools:
-
-* [Arcade Analytics](https://arcadeanalytics.com/usermanual/#arcade-analytics)
-* [Cytoscape](http://www.cytoscape.org/)
-* [Gephi](https://tinkerpop.apache.org/docs/current/reference/#gephi-plugin)
-  plugin for Apache TinkerPop
-* [Graphexp](https://github.com/bricaud/graphexp)
 * [Graph Explorer](https://github.com/invanalabs/graph-explorer)
-* [KeyLines by Cambridge Intelligence](https://cambridge-intelligence.com/visualizing-janusgraph-new-titandb-fork/)
-* [Linkurious](https://doc.linkurio.us/ogma/latest/tutorials/janusgraph/)
-* [Tom Sawyer Perspectives](https://www.tomsawyer.com/perspectives/)
+
+docker run -p 8889:8888 -d --name graph-explorer invanalabs/graph-explorer
+
+Open the Url: http://localhost:8889
+
+Then connect to: `ws://localhost:8182/gremlin` 
+
+The creator created a great little [CRUD intro](https://medium.com/invanalabs/crud-cheatsheet-to-apache-tinkerpop-gremlin-393540cd46ae).
+
+After you have created your first few nodes and edges try this in the query editor:
+```
+nodes=g.V().toList();edges=g.E().toList();[nodes,edges]
+```
 
 ## Cassandra Tools
 

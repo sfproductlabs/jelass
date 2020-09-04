@@ -116,6 +116,14 @@ https://elassandra.readthedocs.io/
 
 On a production environment, we recommand to to modify some system settings such as disabling swap. This guide shows you how to do it. On linux, you should install jemalloc.
 
+#### Optimizing for Janusgraph Batch writes
+
+Setup batch loading for the service:
+```
+echo "storage.batch-loading=true" >> ./conf/gremlin-server/janusgraph-cql-es-server.properties
+echo "schema.default=none" >> ./conf/gremlin-server/janusgraph-cql-es-server.properties
+```
+
 ## Visualization of Janus
 
 * [Graph Explorer](https://github.com/invanalabs/graph-explorer)

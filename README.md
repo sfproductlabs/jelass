@@ -99,6 +99,15 @@ graph.tx().commit()
 ```
 ### Dropping a graph
 
+./bin/gremlin.sh
+```
+graph = JanusGraphFactory.open('conf/gremlin-server/janusgraph-cql-es-server.properties')
+g = graph.traversal()
+g.V().drop().iterate()
+```
+or
+
+
 ```JanusGraphFactory.drop(graph);```
 
 ### Checking Schema

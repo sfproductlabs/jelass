@@ -50,8 +50,8 @@ RUN bash -c 'echo "storage.cql.ssl.enabled=true" >> $JV/conf/gremlin-server/janu
 
 RUN bash -c "sed -i -e '/^assistive_technologies=/s/^/#/' /etc/java-*-openjdk/accessibility.properties"
 
-RUN bash -c "wget https://github.com/strapdata/sql/releases/download/v0.10.0.0.0/opendistro_sql-0.10.0.0.zip" \
- && bash -c "elasticsearch-plugin install 'file:///app/ela/plugins/sql/opendistro_sql-0.10.0.0.zip'"
+#RUN bash -c "wget https://github.com/strapdata/sql/releases/download/v0.10.0.0.0/opendistro_sql-0.10.0.0.zip" \
+RUN bash -c "elasticsearch-plugin install 'file:///app/ela/plugins/sql/opendistro_sql-0.10.0.0.zip'"
 
 # 7000: intra-node communication
 # 7001: TLS intra-node communication

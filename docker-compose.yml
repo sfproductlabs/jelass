@@ -1,0 +1,27 @@
+
+version: "3.4"
+services:
+  cassandra:
+     image: sfproductlabs/jelass:latest
+     expose:
+       - "9042"
+       - "9200"
+       - "8182"
+     ports:
+       - "9042:9042"
+       - "9160:9160"
+       - "9200:9200"
+       - "9300:9300"
+       - "8182:8182"
+     networks: 
+       - default         
+     volumes: 
+       - ./.setup:/tmp/.csetup
+     #command: >
+     #         bash -c "((sleep 90s && (cd janusgraph-full-0.5.2; ./bin/gremlin-server.sh ./conf/gremlin-server/gremlin-server-cql-es.yaml; cd ..) &) && (/docker-entrypoint.sh cassandra -f))"
+  graphexplorer:
+    image: sfproductlabs/graph-explorer:latest
+    ports:
+      - "8889:8888"
+    networks:
+      - default

@@ -154,9 +154,9 @@ nodes=g.V().toList();edges=g.E().toList();[nodes,edges]
 
 https://cassandra.apache.org/third-party/
 
-### Backups
+### Backup & Restore
 
-Backup a single instance (example uses keyspace `scrp`):
+Backup a _single instance_ (example uses keyspace `scrp` replace your keyspace name with this):
 ```bash
 cqlsh --ssl -e "desc scrp" > /tmp/scrp.cql
 nodetool snapshot scrp
@@ -170,8 +170,9 @@ cd /tmp/
 cqlsh --ssl -f /tmp/scrp.cql
 tar -xzvf /tmp/scrp.tgz
 cd /tmp/data/
-sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 /tmp/data/janusgraph/system_properties-945dc7d013e311eb8ccb1d70a5836321
-nodetool refresh scrp
+find . -type f -execdir mv {} ../.. \;
+cd scrp
+for x in *;do sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 ./$x;done
 ```
 
 ## Diagnostics

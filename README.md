@@ -172,7 +172,7 @@ tar -xzvf /tmp/scrp.tgz
 cd /tmp/data/
 find . -type f -execdir mv {} ../.. \;
 cd scrp
-for x in *;do sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 ./$x;done
+for x in *;do sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 /tmp/data/scrp/$x;done
 ```
 
 ## Diagnostics

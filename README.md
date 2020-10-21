@@ -167,9 +167,10 @@ tar -czvf /tmp/scrp.tgz $(find . -type f | grep 1603309754293)
 Restore the instance by copying into a directory:
 ```bash
 cd /tmp/
+cqlsh --ssl -f /tmp/scrp.cql
 tar -xzvf /tmp/scrp.tgz
 cd /tmp/data/
-cqlsh --ssl -f /tmp/scrp.cql
+sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 /tmp/data/janusgraph/system_properties-945dc7d013e311eb8ccb1d70a5836321
 nodetool refresh scrp
 ```
 

@@ -154,6 +154,23 @@ nodes=g.V().toList();edges=g.E().toList();[nodes,edges]
 
 https://cassandra.apache.org/third-party/
 
+### Backups
+
+Backup a single instance (example uses keyspace `scrp`):
+```bash
+nodetool snapshot scrp
+cd /var/lib/cassandra
+tar -czvf /tmp/scrp.tgz $(find . -type f | grep 1603309754293)
+```
+
+Restore the instance by copying into a directory:
+```
+tar -xzvf /tmp/scrp.tgz
+cd data/
+mv scrp /var/lib/cassandra/data/
+nodetool refresh scrp
+```
+
 ## Diagnostics
 
 ```bash

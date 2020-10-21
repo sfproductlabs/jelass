@@ -158,16 +158,18 @@ https://cassandra.apache.org/third-party/
 
 Backup a single instance (example uses keyspace `scrp`):
 ```bash
+cqlsh --ssl -e "desc scrp" > /tmp/scrp.cql
 nodetool snapshot scrp
 cd /var/lib/cassandra
 tar -czvf /tmp/scrp.tgz $(find . -type f | grep 1603309754293)
 ```
 
 Restore the instance by copying into a directory:
-```
+```bash
+cd /tmp/
 tar -xzvf /tmp/scrp.tgz
-cd data/
-mv scrp /var/lib/cassandra/data/
+cd /tmp/data/
+cqlsh --ssl -f /tmp/scrp.cql
 nodetool refresh scrp
 ```
 

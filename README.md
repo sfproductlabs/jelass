@@ -175,6 +175,12 @@ cd scrp
 for x in *;do sstableloader -v --conf-path /etc/cassandra/cassandra.yaml -d 172.19.0.3 /tmp/data/scrp/$x;done
 ```
 
+#### Consolidating and Managing Backups across Datacenters
+
+I personally use a grandfather,father,son model for backups using a tool called Borg:
+
+https://www.borgbackup.org/demo.html
+
 ## Diagnostics
 
 ```bash

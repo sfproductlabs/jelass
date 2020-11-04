@@ -137,7 +137,7 @@ echo "schema.default=none" >> ./conf/gremlin-server/janusgraph-cql-es-server.pro
 
 * [Graph Explorer](https://github.com/invanalabs/graph-explorer)
 
-docker run -p 8889:8888 -d --name graph-explorer invanalabs/graph-explorer
+docker run -p 8889:8888 -d --name graph-explorer sfproductlabs/graph-explorer:latest
 
 Open the Url: http://localhost:8889
 
